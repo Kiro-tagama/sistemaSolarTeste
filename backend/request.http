@@ -1,0 +1,36 @@
+# extensão - REST Client
+
+### Login (obter token)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "admin@solar.com",
+  "password": "123456"
+}
+
+### Obter todos os planetas (protegido)
+GET http://localhost:3000/planets
+Authorization: Bearer {{token}}
+
+### Obter todos os planetas (protegido)
+GET http://localhost:3000/planets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+
+### Obter detalhes de um planeta por ID (protegido)
+GET http://localhost:3000/planets/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+
+### Criar planeta personalizado (protegido)
+POST http://localhost:3000/planets
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+
+{
+  "name": "Jupiter",
+  "diameter": 9999,
+  "rotationPeriod": "30h",
+  "distanceFromSun": 300,
+  "hasRings": true,
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Jupiter_by_Cassini-Huygens.jpg/640px-Jupiter_by_Cassini-Huygens.jpg"
+}
