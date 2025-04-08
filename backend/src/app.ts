@@ -5,8 +5,10 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import planetRoutes from './routes/planet';
 import { authenticateToken } from './middleware/auth';
+import { connectDB } from './config/mongo';
 
 dotenv.config();
+connectDB();
 
 export const app = express();
 app.use(cors());
