@@ -1,7 +1,8 @@
 import request from 'supertest';
 import { app } from '../app';
 
-let token = '';
+let token: string;
+let createdPlanetId: string;
 
 beforeAll(async () => {
     const response = await request(app)
@@ -12,7 +13,20 @@ beforeAll(async () => {
         });
 
     token = response.body.token;
-    console.log(token)
+
+    const planetRes = await request(app)
+        .post('/planets')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            name: 'Test Planet',
+            diameter: 5000,
+            rotationPeriod: '10h',
+            distanceFromSun: 300,
+            hasRings: false,
+            imageUrl: 'https://example.com/image.jpg'
+        });
+
+    createdPlanetId = planetRes.body._id;
 });
 
 describe('GET /planets', () => {
@@ -29,11 +43,11 @@ describe('GET /planets', () => {
 describe('GET /planets/:id', () => {
     it('should return 200 and the planet when a valid ID is passed', async () => {
         const res = await request(app)
-            .get('/planets/1')
+            .get('/planets/' + createdPlanetId)
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty('id', '1');
+        expect(res.body).toHaveProperty('_id', createdPlanetId);
     });
 
     it('should return 404 when a non-existent ID is passed', async () => {
@@ -63,7 +77,7 @@ describe('POST /planets', () => {
             .send(newPlanet);
 
         expect(res.status).toBe(201);
-        expect(res.body).toHaveProperty('name', 'Mars');
+        expect(res.body).toHaveProperty('name', 'Other Planet');
     });
 
     it('should return 400 if planet already exists', async () => {

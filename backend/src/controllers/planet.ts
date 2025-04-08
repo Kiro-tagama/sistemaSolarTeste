@@ -1,10 +1,9 @@
-// controllers/planetController.ts
 import { Request, Response } from 'express';
 import { Planet } from '../models/planets';
 
 export async function getAllPlanets(req: Request, res: Response) {
   const planets = await Planet.find();
-  res.json(planets);
+  res.status(200).json(planets);
   return;
 }
 
@@ -14,7 +13,7 @@ export async function getPlanetById(req: Request, res: Response) {
     res.status(404).json({ message: 'Planet not found' });
     return;
   }
-  res.json(planet);
+  res.status(200).json(planet);
   return;
 }
 
@@ -22,12 +21,14 @@ export async function createPlanet(req: Request, res: Response) {
   const { name, diameter, rotationPeriod, distanceFromSun, hasRings, imageUrl } = req.body;
 
   if (!name || !diameter || !rotationPeriod || !distanceFromSun || !imageUrl) {
-    return res.status(400).json({ message: 'Missing fields' });
+    res.status(400).json({ message: 'Missing fields' });
+    return
   }
 
   const existing = await Planet.findOne({ name: new RegExp(`^${name}$`, 'i') });
   if (existing) {
-    return res.status(400).json({ message: 'Planet already exists!' });
+    res.status(400).json({ message: 'Planet already exists!' });
+    return
   }
 
   const newPlanet = new Planet({

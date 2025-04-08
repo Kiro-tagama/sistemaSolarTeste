@@ -7,7 +7,7 @@ export function Planet() {
     const { getByIdPlanets } = usePlanets()
     const [data, setData] = useState<PropsPlanets>()
 
-
+    console.log(id)
     const getData = async () => {
         const planets = id && await getByIdPlanets(id)
         if (planets) setData(planets)

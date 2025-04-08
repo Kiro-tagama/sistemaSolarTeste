@@ -1,11 +1,17 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/auth"
 import { useNavigate } from "react-router-dom"
 
 export function Login() {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext)!;
+  const { user, login } = useContext(AuthContext)!;
   const [loadin, setLoading] = useState<boolean>(false)
+
+  // useEffect(() => {
+  //   if (user && user.token) {
+  //     navigate("/home")
+  //   }
+  // }, [])
 
   const signIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

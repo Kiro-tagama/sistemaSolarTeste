@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth";
 import axios from "axios";
 
 export interface PropsPlanets {
-    id?: string;
+    _id?: string;
     name: string;
     diameter: number;
     rotationPeriod: string;

@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { PropsPlanets, usePlanets } from "../hooks/usePlanets"
 import { AuthContext } from "../context/auth";
 import { FormNewPlanet } from "../component/FormNewPlanet";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)!;
     const { getAllPlanets } = usePlanets()
     const [data, setData] = useState<PropsPlanets[] | null>(null)
@@ -36,7 +38,11 @@ export function Home() {
             />
             <div>
                 {data == null ? <div aria-busy="true" style={{ margin: "2rem" }} /> :
-                    data?.map((item: PropsPlanets, index: number) => <article key={index}></article>)
+                    data?.map((item: PropsPlanets, index: number) =>
+                        <article key={index} onClick={() => navigate('/planet/' + item._id)} style={{ width: "min-content" }}>
+                            <img src={item.imageUrl} alt="" style={{ maxWidth: "20rem", objectFit: "cover" }} />
+                            <h3>{item.name}</h3>
+                        </article>)
                 }
             </div>
         </main>

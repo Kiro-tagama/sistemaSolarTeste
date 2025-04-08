@@ -1,5 +1,10 @@
 export function NotFound() {
     return(
-        <div>404</div>
+        <div>
+            <article>
+                <h1>404</h1>
+                <a href="/">Voltar</a>
+            </article>
+        </div>
     )
 }
