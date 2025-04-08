@@ -6,7 +6,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
     "start": "node dist/app.js",
-    "test": "jest"
+    "test": "jest",
+    "seed": "ts-node src/seeds/planets.ts && ts-node src/seeds/user.ts"
   },
   "keywords": [],
   "author": "",

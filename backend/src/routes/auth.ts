@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { User } from '../models/user';
 
 const router = Router();
 
@@ -8,19 +9,22 @@ const user = {
     password: '123456',
 };
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    if (email === user.email && password === user.password) {
-        const token = jwt.sign({ email }, process.env.JWT_SECRET || 'default', {
-            expiresIn: '2h',
-        });
-        res.status(200).json({ token });
-        return;
+    const user = await User.findOne({ email });
+
+    if (!user || user.password !== password) {
+        res.status(401).json({ message: 'Invalid credentials' });
+        return 
     }
 
-    res.status(401).json({ message: 'Invalid credentials' });
-    return;
+    const token = jwt.sign({ email }, process.env.JWT_SECRET || 'default', {
+        expiresIn: '2h',
+    });
+
+    res.status(200).json({ token });
+    return
 });
 
 export default router;

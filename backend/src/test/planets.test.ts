@@ -49,7 +49,7 @@ describe('GET /planets/:id', () => {
 describe('POST /planets', () => {
     it('should return 201 and the new planet when data is valid', async () => {
         const newPlanet = {
-            name: 'Mars',
+            name: 'Other Planet',
             diameter: 6779,
             rotationPeriod: '24.6h',
             distanceFromSun: 227.9,
