@@ -1,14 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 import authRoutes from './routes/auth';
 import planetRoutes from './routes/planet';
 import { authenticateToken } from './middleware/auth';
-import { connectDB } from './config/mongo';
 
 dotenv.config();
-connectDB();
 
 export const app = express();
 app.use(cors());
@@ -18,6 +17,17 @@ app.use('/login', authRoutes);
 app.use('/planets', authenticateToken, planetRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+
+mongoose.connect(process.env.MONGODB_URI!)
+    .then(() => {
+        console.log('✅ MongoDB connected');
+
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`🚀 Server running on http://localhost:${process.env.PORT || 3000}`);
+        });
+    })
+    .catch(err => {
+        console.error('❌ Failed to connect to MongoDB:', err);
+        process.exit(1);
+    });
+

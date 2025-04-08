@@ -8,26 +8,29 @@ type User = {
 
 type AuthContextType = {
   user: User | null;
-  login: (data: { email: string; password: string }) => void;
+  login: (data: { email: string; password: string }) => Promise<boolean>;
   logout: () => void;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (data: { email: string; password: string }) => {
-    // http://localhost:3000/login
+  const login = (data: { email: string; password: string }): Promise<boolean> => {
     // React-Toastify
-    axios.post("http://localhost:3000/login", data)
+    return axios.post(apiUrl + "/login", data)
       .then(res => {
+        console.log("login realizado")
+        console.log(res.data.token)
         setUser({
           email: data.email,
           token: res.data.token
         });
+        return true
       })
-      .catch(err => alert("erro: " + err))
+      .catch(err => {throw err})
   };
 
   const logout = () => {

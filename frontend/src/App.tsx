@@ -7,14 +7,17 @@ import { useContext } from "react";
 import { AuthContext } from "./context/auth";
 
 export default function App() {
-  const { user } = useContext(AuthContext)
-  console.log(user)
+  const { user } = useContext(AuthContext)!;
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/planet/:id" element={<Planet />} />
+        {user &&
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/planet/:id" element={<Planet />} />
+          </>
+        }
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

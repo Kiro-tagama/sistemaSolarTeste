@@ -1,5 +1,7 @@
 # extensão - REST Client
 
+GET http://localhost:3000/
+
 ### Login (obter token)
 POST http://localhost:3000/login
 Content-Type: application/json
@@ -15,16 +17,16 @@ Authorization: Bearer {{token}}
 
 ### Obter todos os planetas (protegido)
 GET http://localhost:3000/planets
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDEzODk5Nn0.7WaerTwwpcHlU0ixVtOGN34ELgEw5xKfkA801Dyu3HM
 
 ### Obter detalhes de um planeta por ID (protegido)
-GET http://localhost:3000/planets/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+GET http://localhost:3000/planets/67f529add9b3ebf871390c3a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDEzODk5Nn0.7WaerTwwpcHlU0ixVtOGN34ELgEw5xKfkA801Dyu3HM
 
 ### Criar planeta personalizado (protegido)
 POST http://localhost:3000/planets
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDA0OTUzOCwiZXhwIjoxNzQ0MDU2NzM4fQ.GESzOiwOoKQF0KnyBZ1H0p4TOyNuHM7f9d7aoKVyvLI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbGFyLmNvbSIsImlhdCI6MTc0NDEzODk5Nn0.7WaerTwwpcHlU0ixVtOGN34ELgEw5xKfkA801Dyu3HM
 
 {
   "name": "Jupiter",
