@@ -8,13 +8,22 @@ export async function getAllPlanets(req: Request, res: Response) {
 }
 
 export async function getPlanetById(req: Request, res: Response) {
-  const planet = await Planet.findById(req.params.id);
-  if (!planet) {
-    res.status(404).json({ message: 'Planet not found' });
-    return;
+  try {
+    const { id } = req.params;
+
+    const planet = await Planet.findById(id);
+    if (!planet) {
+      res.status(404).json({ message: 'Planet not found' });
+      return 
+    }
+
+    res.status(200).json(planet);
+    return 
+  } catch (error) {
+    console.error('❌ GET /planets/:id error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+    return 
   }
-  res.status(200).json(planet);
-  return;
 }
 
 export async function createPlanet(req: Request, res: Response) {
