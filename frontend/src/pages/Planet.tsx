@@ -20,7 +20,7 @@ export function Planet() {
   if (!data) return <p style={{ padding: "2rem" }}>Loading planet data...</p>;
 
   return (
-    <article>
+    <article style={{ height: "92vh" }}>
       <Link to={"/home"}>
         <button>Voltar</button>
       </Link>
