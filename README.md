@@ -2,6 +2,8 @@
 
 site: https://sistema-solar-teste.vercel.app/
 
+na raiz existe um video de teste
+
 tools:
 
 - expressjs
