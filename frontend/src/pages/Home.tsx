@@ -68,7 +68,7 @@ export function Home() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  maxWidth: "600px",
+                  maxWidth: "350px",
                 }}
               >
                 <img
