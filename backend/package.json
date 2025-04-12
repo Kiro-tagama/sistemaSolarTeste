@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "test": "jest",
-    "seed": "ts-node src/seeds/planets.ts && ts-node src/seeds/user.ts"
+    "seed": "ts-node src/seeds/planets.ts && ts-node src/seeds/user.ts",
+    "seedDist": "node src/seeds/planets.js && node src/seeds/user.js"
   },
   "keywords": [],
   "author": "",
