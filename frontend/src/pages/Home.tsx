@@ -33,6 +33,7 @@ export function Home() {
         <p style={{ margin: 0 }}>user: {user?.email}</p>
         <button onClick={() => setModal(true)}>Novo planeta</button>
       </article>
+      <br />
       <FormNewPlanet open={modal} setOpen={setModal} />
       <input
         type="search"

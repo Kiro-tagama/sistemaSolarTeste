@@ -28,8 +28,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return axios
       .post(apiUrl + "/login", data)
       .then((res) => {
-        console.log("login realizado");
-        console.log(res.data.token);
         setUser({
           email: data.email,
           token: res.data.token,

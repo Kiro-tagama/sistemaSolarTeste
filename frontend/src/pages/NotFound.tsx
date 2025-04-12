@@ -8,6 +8,8 @@ export function NotFound() {
           flexDirection: "column",
           textAlign: "center",
           padding: "4rem",
+          justifyContent: "center",
+          width: "100%",
         }}
       >
         <h1>404</h1>
