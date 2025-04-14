@@ -45,3 +45,7 @@ deploy no render com mongodb atlas
   #test
   npm run test
 ```
+
+Confirmacao do status do backend no render, conectado no atlasdb (mongodb online)
+
+![](./renderStatus.png)
