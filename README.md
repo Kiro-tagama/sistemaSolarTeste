@@ -2,6 +2,8 @@
 
 site: https://sistema-solar-teste.vercel.app/
 
+obs. o deploy do backend não foi realizado por instabilidade do sistema e/ou plano, logo o backned tem que ser executado localmente (o site na vercel tem como variavel o local então não tem a necessidade de executar o frontend)
+
 na raiz existe um video de teste
 
 tools:
@@ -15,6 +17,7 @@ tools:
 ### front-end
 
 deploy vercel
+
 obs. crie o arquivo dotenv
 
 ```bash
@@ -32,8 +35,6 @@ teste
 ```
 
 ### back-end
-
-deploy railway
 
 ```bash
   cd backend
